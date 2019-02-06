@@ -22,8 +22,51 @@
       <audio src=""></audio>
     </li>
   	<li class="white">
-      <audio src=""></audio>
+      <audio src="sounds/middle/"></audio>
     </li>
   </ul>
+  
+  <script>
+    const piano = document.getElementsByClassName('set middle')[0],
+          buttons = piano.getElementsByTagName('li'),
+          audioNames = ['first.mp3', 'second.mp3', 'third.mp3', 'fourth.mp3', 'fifth.mp3'];
+  
+    function hotKeys(event) {
+      if (event.shiftKey) {
+        piano.classList.remove('middle');
+        piano.classList.remove('higher');
+        piano.classList.add('lower');
+      } else if (event.altKey) {
+        piano.classList.remove('middle');
+        piano.classList.remove('lower');
+        piano.classList.add('higher');
+      } else {
+        piano.classList.remove('higher');
+        piano.classList.remove('lower');
+        piano.classList.add('middle');
+      };
+    }
+    
+    function soundPlay(event) {
+      hotKeys(event);
+      
+      const buttonId = Array.from(buttons).indexOf(this),
+            audio = this.getElementsByTagName('audio')[0];
+        
+      if (piano.classList.contains('middle')) {
+        audio.src = 'sounds/middle/' + audioNames[buttonId];
+      } else if (piano.classList.contains('lower')) {
+        audio.src = 'sounds/lower/' + audioNames[buttonId];
+      } else if (piano.classList.contains('higher')) {
+        audio.src = 'sounds/higher/' + audioNames[buttonId];
+      };
+      
+      audio.play();
+    };
+    
+    Array.from(buttons).forEach((button, i) => {
+      button.addEventListener('click', soundPlay);
+    }); 
+  </script>
 </body>
 </html>

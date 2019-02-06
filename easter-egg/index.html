@@ -45,5 +45,46 @@
       </svg>
     </div>
   </main>
+  
+  <script>
+    const menu = document.getElementsByTagName('nav')[0],
+          secret = document.getElementsByClassName('secret')[0],
+          code = 'нетология';
+    let inputedCode = '';
+    
+    function keyDetector (event) {
+      event.preventDefault();
+      
+      if (event.ctrlKey && event.altKey && event.code === 'KeyT') {
+        menu.classList.toggle('visible');
+      }
+    
+      if (event.code === 'KeyY') {
+        inputedCode += 'н';
+      } else if (event.code === 'KeyT') {
+        inputedCode += 'е';
+      } else if (event.code === 'KeyN') {
+        inputedCode += 'т';
+      } else if (event.code === 'KeyJ') {
+        inputedCode += 'о';
+      } else if (event.code === 'KeyK') {
+        inputedCode += 'л';
+      } else if (event.code === 'KeyU') {
+        inputedCode += 'г';
+      } else if (event.code === 'KeyB') {
+        inputedCode += 'и';
+      } else if (event.code === 'KeyZ') {
+        inputedCode += 'я';
+      } else {
+        inputedCode += ' ';
+      };
+      
+      if (inputedCode.includes(code)) {
+        secret.classList.add('visible');
+      };
+    };
+    
+    document.addEventListener('keydown', keyDetector);
+  </script>
 </body>
 </html>

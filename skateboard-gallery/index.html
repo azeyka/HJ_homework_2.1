@@ -33,5 +33,22 @@
       <img src="images/thumb/07.jpg" title="EGGBEATER">
     </a>
   </nav>
+  
+  <script>
+    const smallPics = document.getElementById('nav').getElementsByTagName('a'),
+          bigPic = document.getElementById('view');
+    
+    function selectItem(event) {
+      event.preventDefault();
+      Array.from(smallPics).forEach((smallPic) => {
+        smallPic == this ? smallPic.classList.add('gallery-current') : smallPic.classList.remove('gallery-current');
+      });
+      bigPic.src = this.href;  
+    };
+
+    Array.from(smallPics).forEach((smallPic) => {
+      smallPic.addEventListener('click', selectItem);
+    });
+  </script>
 </body>
 </html>
